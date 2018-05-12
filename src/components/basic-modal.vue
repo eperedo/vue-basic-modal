@@ -1,8 +1,8 @@
 <template>
 	<div ref="basicModal" @keydown.esc="close"
-		tabindex="1"
-		class="modal-container" v-if="state">
-		<div class="modal" v-bind="$attrs">
+		tabindex="1" class="modal-container" v-if="state"
+	>
+		<div v-bind:class="extraClass" v-bind="$attrs">
 			<slot :is-open="isOpen"></slot>
 		</div>
 	</div>
@@ -22,6 +22,10 @@ function destroyed() {
 		'click',
 		isClickingOutside.bind(this),
 	);
+}
+
+function extraClass() {
+	return this.modalClass ? `modal ${this.modalClass}` : 'modal';
 }
 
 function mounted() {
@@ -49,23 +53,28 @@ function isOpen() {
 export default {
 	name: 'basic-modal',
 	computed: {
+		extraClass,
 		isOpen,
 	},
 	destroyed,
 	inheritAttrs: false,
+	methods: {
+		close,
+	},
 	mounted,
 	props: {
 		closeOnClick: {
 			type: Boolean,
 			default: true,
 		},
+		modalClass: {
+			type: String,
+			default: 'modal',
+		},
 		state: {
 			type: Boolean,
 			default: false,
 		},
-	},
-	methods: {
-		close,
 	},
 };
 </script>
@@ -77,7 +86,6 @@ export default {
 	display: flex;
 	height: 100vh;
 	justify-content: center;
-	margin: 0;
 	position: absolute;
 	right: 0;
 	top: 0;

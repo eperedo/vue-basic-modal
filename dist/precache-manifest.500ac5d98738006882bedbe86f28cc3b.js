@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "1c8c52c78f61cdc7acdb",
+    "revision": "1439683ed1cbb0087fdc",
     "url": "basic-modal.css"
   },
   {
-    "revision": "1c8c52c78f61cdc7acdb",
+    "revision": "1439683ed1cbb0087fdc",
     "url": "basic-modal.common.js"
   }
 ];

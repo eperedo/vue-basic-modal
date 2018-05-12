@@ -18,9 +18,15 @@
 						</label>
 						<input type="checkbox" id="close-on-click" v-model="closeOnClick" />
 					</div>
+					<div class="form-input">
+						<label for="extra-css-class">
+							Extra css class
+						</label>
+						<input type="text" id="extra-css-class" v-model="modalClass" />
+					</div>
 				</form>
 				<basic-modal :state="state" :close-on-click="closeOnClick"
-					@input="inputModal"
+					:modal-class="modalClass" @input="inputModal"
 				>
 				<button type="button" @click="state = false">X</button>
 					I am a Modal
@@ -36,6 +42,7 @@ import basicModal from './components/basic-modal.vue';
 function data() {
 	return {
 		closeOnClick: true,
+		modalClass: 'my-custom-class',
 		state: false,
 	};
 }
@@ -64,5 +71,23 @@ export default {
 
 body {
 	background-color: cyan;
+}
+
+.form-input {
+	display: flex;
+	margin: 5px;
+	padding: 10px;
+
+	> label {
+		min-width: 120px;
+	}
+
+	> input {
+		margin-left: 5px;
+	}
+}
+
+.my-custom-class {
+	color: red;
 }
 </style>
