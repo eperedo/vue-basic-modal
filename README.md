@@ -2,7 +2,7 @@
 
 > A basic modal made with vove, I mean with luve... VUE and LOVE!
 
-[Demo on jsbin](https://jsbin.com/bosocetenu/edit?html,js,output)
+[Demo on jsbin](https://jsbin.com/bekogarazu/1/edit?html,js,output)
 
 ### Usage
 
@@ -18,7 +18,13 @@ or using UMD
 <script src="https://unpkg.com/vue-basic-modal/dist/vue-basic-modal.umd.min.js"></script>
 ```
 
-2.  Add to your awesome vue app
+2.  Add the css file somewhere in your application
+
+```html
+<link rel="stylsheet" href="https://unpkg.com/vue-basic-modal/dist/basic-modal.css"></link>
+```
+
+3.  And finally the component!
 
 ```html
 <template>
