@@ -5,8 +5,24 @@
 				<h1>Basic Modal</h1>
 			</header>
 			<section>
-				<button type="button" @click="state = !state">Show Modal</button>
-				<basic-modal :state="state" @input="inputModal">
+				<form>
+					<div class="form-input">
+						<label for="state">
+							Show Modal?
+						</label>
+						<input type="checkbox" id="state" v-model="state" />
+					</div>
+					<div class="form-input">
+						<label for="close-on-click">
+							Close on click?
+						</label>
+						<input type="checkbox" id="close-on-click" v-model="closeOnClick" />
+					</div>
+				</form>
+				<basic-modal :state="state" :close-on-click="closeOnClick"
+					@input="inputModal"
+				>
+				<button type="button" @click="state = false">X</button>
 					I am a Modal
 				</basic-modal>
 			</section>
@@ -19,6 +35,7 @@ import basicModal from './components/basic-modal.vue';
 
 function data() {
 	return {
+		closeOnClick: true,
 		state: false,
 	};
 }

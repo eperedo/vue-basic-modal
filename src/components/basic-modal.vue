@@ -1,7 +1,9 @@
 <template>
-	<div ref="basicModal" class="modal-container" v-if="state">
+	<div ref="basicModal" @keydown.esc="close"
+		tabindex="1"
+		class="modal-container" v-if="state">
 		<div class="modal" v-bind="$attrs">
-			<slot></slot>
+			<slot :is-open="isOpen"></slot>
 		</div>
 	</div>
 </template>
@@ -9,7 +11,9 @@
 <script>
 function isClickingOutside() {
 	if (event.target === this.$refs.basicModal) {
-		this.$emit('input', false);
+		if (this.closeOnClick) {
+			this.$emit('input', false);
+		}
 	}
 }
 
@@ -19,6 +23,7 @@ function destroyed() {
 		isClickingOutside.bind(this),
 	);
 }
+
 function mounted() {
 	this.$el.ownerDocument.addEventListener(
 		'click',
@@ -27,16 +32,40 @@ function mounted() {
 	);
 }
 
+function close() {
+	this.$emit('input', false);
+}
+
+function isOpen() {
+	if (this.state) {
+		this.$nextTick(() => {
+			this.$refs.basicModal.focus();
+		});
+		return true;
+	}
+	return false;
+}
+
 export default {
 	name: 'basic-modal',
+	computed: {
+		isOpen,
+	},
 	destroyed,
-	mounted,
 	inheritAttrs: false,
+	mounted,
 	props: {
+		closeOnClick: {
+			type: Boolean,
+			default: true,
+		},
 		state: {
 			type: Boolean,
 			default: false,
 		},
+	},
+	methods: {
+		close,
 	},
 };
 </script>
@@ -53,13 +82,12 @@ export default {
 	right: 0;
 	top: 0;
 	width: 100%;
-	z-index: 999999999999;
 }
 
 .modal {
 	background-color: #fff;
-	border-radius: 5%;
 	flex-basis: 400px;
 	height: calc(100% / 2);
+	padding: 10px;
 }
 </style>
