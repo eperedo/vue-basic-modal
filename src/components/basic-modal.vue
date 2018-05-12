@@ -37,7 +37,9 @@ function mounted() {
 }
 
 function close() {
-	this.$emit('input', false);
+	if (this.closeOnEscape) {
+		this.$emit('input', false);
+	}
 }
 
 function isOpen() {
@@ -64,6 +66,10 @@ export default {
 	mounted,
 	props: {
 		closeOnClick: {
+			type: Boolean,
+			default: true,
+		},
+		closeOnEscape: {
 			type: Boolean,
 			default: true,
 		},

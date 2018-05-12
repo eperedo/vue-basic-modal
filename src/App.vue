@@ -19,6 +19,12 @@
 						<input type="checkbox" id="close-on-click" v-model="closeOnClick" />
 					</div>
 					<div class="form-input">
+						<label for="close-on-click">
+							Close with esc?
+						</label>
+						<input type="checkbox" id="close-on-click" v-model="closeOnScape" />
+					</div>
+					<div class="form-input">
 						<label for="extra-css-class">
 							Extra css class
 						</label>
@@ -26,7 +32,8 @@
 					</div>
 				</form>
 				<basic-modal :state="state" :close-on-click="closeOnClick"
-					:modal-class="modalClass" @input="inputModal"
+					:modal-class="modalClass" :close-on-escape="closeOnScape"
+					@input="inputModal"
 				>
 				<button type="button" @click="state = false">X</button>
 					I am a Modal
@@ -42,6 +49,7 @@ import basicModal from './components/basic-modal.vue';
 function data() {
 	return {
 		closeOnClick: true,
+		closeOnScape: true,
 		modalClass: 'my-custom-class',
 		state: false,
 	};
