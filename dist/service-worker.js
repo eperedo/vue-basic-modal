@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.3387081e05db47f869bb5f81e0cc0a8d.js"
+  "precache-manifest.e942cc0a8aa7a7b18651bb2259a6ed73.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-basic-modal"});
