@@ -6,7 +6,7 @@
 			</header>
 			<section>
 				<button type="button" @click="state = !state">Show Modal</button>
-				<basic-modal :state="state">
+				<basic-modal :state="state" @input="inputModal">
 					I am a Modal
 				</basic-modal>
 			</section>
@@ -23,12 +23,19 @@ function data() {
 	};
 }
 
+function inputModal(newState) {
+	this.state = newState;
+}
+
 export default {
 	name: 'app',
 	components: {
 		basicModal,
 	},
 	data,
+	methods: {
+		inputModal,
+	},
 };
 </script>
 

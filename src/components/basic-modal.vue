@@ -1,5 +1,5 @@
 <template>
-	<div class="modal-container" v-if="state">
+	<div ref="basicModal" class="modal-container" v-if="state">
 		<div class="modal" v-bind="$attrs">
 			<slot></slot>
 		</div>
@@ -7,8 +7,30 @@
 </template>
 
 <script>
+function isClickingOutside() {
+	if (event.target === this.$refs.basicModal) {
+		this.$emit('input', false);
+	}
+}
+
+function destroyed() {
+	this.$el.ownerDocument.removeEventListener(
+		'click',
+		isClickingOutside.bind(this),
+	);
+}
+function mounted() {
+	this.$el.ownerDocument.addEventListener(
+		'click',
+		isClickingOutside.bind(this),
+		false,
+	);
+}
+
 export default {
 	name: 'basic-modal',
+	destroyed,
+	mounted,
 	inheritAttrs: false,
 	props: {
 		state: {
