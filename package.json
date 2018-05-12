@@ -6,7 +6,7 @@
 		"serve": "vue-cli-service serve --open",
 		"build": "vue-cli-service build",
 		"component":
-			"vue-cli-service build --target lib --name basicModal src/components/basic-modal.vue",
+			"vue-cli-service build --target lib --name basic-modal src/components/basic-modal.vue --verbose",
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {

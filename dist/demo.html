@@ -1,0 +1,16 @@
+<title>basic-modal demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="./basic-modal.umd.js"></script>
+<link rel="stylesheet" href="./basic-modal.css">
+
+<div id="app">
+  <demo></demo>
+</div>
+
+<script>
+new Vue({
+  components: {
+    demo: basic-modal
+  }
+}).$mount('#app')
+</script>
